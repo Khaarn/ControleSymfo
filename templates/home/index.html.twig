@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <table class="table">
+            <thead>
+            <h1>Les Clients</h1>
+            <tr>
+                <th>Societe</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>IBAN</th>
+            </tr>
+            </thead>
+            <a href="{{ path("ajouter") }}"
+               class="btn btn-outline-primary">Ajouter un client</a>
+            <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.societe }}</td>
+                    <td>{{ categorie.nom }}</td>
+                    <td>{{ categorie.prenom }}</td>
+                    <td>{{ categorie.email }}</td>
+                    <td>{{ categorie.iban }}</td>
+                    <td>
+                        <a href="{{ path("modifier",{"id": categorie.id}) }}"
+                           class="btn btn-outline-primary">
+                            Modifier
+                        </a>
+                        <a href="{{ path("supprimer",{"id": categorie.id}) }}"
+                           class="btn btn-outline-danger">
+                            Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
